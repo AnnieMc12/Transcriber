@@ -72,7 +72,7 @@ class Transcript:
         """Format the transcript with timestamps and speaker names."""
         lines = []
         for seg in self.segments:
-            if seg.type != "transcription":
+            if seg.type not in ("transcription", "transcription_segment"):
                 continue
             ts = self.format_timestamp(seg.start)
             name = self.get_display_name(seg.speaker_id)

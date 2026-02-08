@@ -25,7 +25,7 @@ def transcribe_file(file_path: str, api_key: str) -> dict:
     data = {
         "model": MODEL,
         "diarize": "true",
-        "timestamp_granularities": '["segment"]',
+        "timestamp_granularities": "segment",
     }
 
     try:
