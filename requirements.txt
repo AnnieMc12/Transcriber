@@ -1,0 +1,4 @@
+PyQt6>=6.6.0
+requests>=2.31.0
+pydub>=0.25.1
+pyinstaller>=6.0.0
