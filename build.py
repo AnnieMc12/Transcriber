@@ -1,5 +1,6 @@
-"""Build script for creating the standalone .exe with PyInstaller."""
+"""Build script for creating a standalone executable with PyInstaller."""
 
+import os
 import subprocess
 import sys
 
@@ -12,7 +13,7 @@ def main():
         "--onefile",
         "--windowed",
         "--name", "VoxtralTranscriber",
-        "--add-data", "src;src",
+        "--add-data", f"src{os.pathsep}src",
         "main.py",
     ]
 

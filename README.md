@@ -1,6 +1,6 @@
 # Voxtral Transcriber
 
-A Windows desktop application for transcribing audio files using the Mistral API (Voxtral Mini model) with speaker diarization.
+A cross-platform (Windows/Linux) desktop application for transcribing audio files using the Mistral API (Voxtral Mini model) with speaker diarization.
 
 ## Features
 
@@ -20,14 +20,39 @@ A Windows desktop application for transcribing audio files using the Mistral API
 
 ## Setup
 
+### Windows
+
 ```bash
 pip install -r requirements.txt
 ```
 
+### Linux
+
+Install FFmpeg if you don't have it (e.g. `sudo apt install ffmpeg`), then:
+
+```bash
+python3 -m venv .venv
+.venv/bin/pip install PyQt6 requests pydub
+```
+
 ## Running from Source
+
+### Windows
 
 ```bash
 python main.py
+```
+
+### Linux
+
+```bash
+.venv/bin/python main.py
+```
+
+There is also a command-line interface that skips the GUI entirely:
+
+```bash
+.venv/bin/python cli.py my_audio.mp3
 ```
 
 ## Building the .exe
