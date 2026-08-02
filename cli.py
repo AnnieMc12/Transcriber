@@ -154,17 +154,19 @@ def _transcribe_chunked(audio_path: str, api_key: str) -> dict:
     print(f"Split into {total} chunks.\n")
 
     chunk_results = []
+    chunk_durations = []
     try:
         for i, chunk_path in enumerate(chunk_paths, 1):
             print(f"Transcribing chunk {i}/{total}...", end=" ", flush=True)
             result = transcribe_file(chunk_path, api_key)
             chunk_results.append(result)
+            chunk_durations.append(c.get_duration_s(chunk_path))
             print("done.")
     finally:
         c.cleanup_chunks(chunk_paths)
 
     print("\nStitching chunks together...")
-    return c.stitch_segments(chunk_results)
+    return c.stitch_segments(chunk_results, chunk_durations)
 
 
 def _format_size(size_bytes: int) -> str:
