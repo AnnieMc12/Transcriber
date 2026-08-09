@@ -11,11 +11,30 @@ If no API key is provided, reads MISTRAL_API_KEY from environment or ~/.openclaw
 import argparse
 import os
 import sys
+import time
 from datetime import datetime
 from pathlib import Path
 
 from src.api_client import TranscriptionError, transcribe_file
 from src.transcript import Transcript
+
+
+def transcribe_with_retry(path: str, api_key: str, max_retries: int = 6) -> dict:
+    """Call transcribe_file, waiting and retrying on rate limits (HTTP 429)."""
+    delay = 30
+    for attempt in range(max_retries + 1):
+        try:
+            return transcribe_file(path, api_key)
+        except TranscriptionError as e:
+            if e.status_code != 429 or attempt == max_retries:
+                raise
+            print(
+                f"\n  Rate limited — waiting {delay}s before retrying "
+                f"({attempt + 1}/{max_retries})...",
+                flush=True,
+            )
+            time.sleep(delay)
+            delay = min(delay * 2, 300)
 
 # Lazy import chunker — requires pydub + ffmpeg which may not be available
 _chunker = None
@@ -105,7 +124,7 @@ def main():
             result = _transcribe_chunked(audio_path, api_key)
         else:
             print("Transcribing...")
-            result = transcribe_file(audio_path, api_key)
+            result = transcribe_with_retry(audio_path, api_key)
             print("Done.")
     except TranscriptionError as e:
         print(f"\nTranscription error: {e}", file=sys.stderr)
@@ -158,7 +177,7 @@ def _transcribe_chunked(audio_path: str, api_key: str) -> dict:
     try:
         for i, chunk_path in enumerate(chunk_paths, 1):
             print(f"Transcribing chunk {i}/{total}...", end=" ", flush=True)
-            result = transcribe_file(chunk_path, api_key)
+            result = transcribe_with_retry(chunk_path, api_key)
             chunk_results.append(result)
             chunk_durations.append(c.get_duration_s(chunk_path))
             print("done.")
