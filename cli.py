@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Command-line interface for Voxtral Transcriber.
+"""Command-line interface for NeoTranscribe.
 
 Usage:
     python cli.py <audio_file> [--output <output_file>] [--key <api_key>]

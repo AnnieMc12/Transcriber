@@ -1,4 +1,4 @@
-"""Main application window for Voxtral Transcriber."""
+"""Main application window for NeoTranscribe."""
 
 import os
 from datetime import datetime
@@ -108,7 +108,7 @@ class DropZone(QLabel):
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Voxtral Transcriber")
+        self.setWindowTitle("NeoTranscribe")
         self.resize(800, 600)
 
         self._selected_file: str | None = None

@@ -12,7 +12,7 @@ def main():
         "PyInstaller",
         "--onefile",
         "--windowed",
-        "--name", "VoxtralTranscriber",
+        "--name", "NeoTranscribe",
         "--add-data", f"src{os.pathsep}src",
         "main.py",
     ]

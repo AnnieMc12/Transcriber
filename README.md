@@ -1,4 +1,4 @@
-# Voxtral Transcriber
+# NeoTranscribe
 
 A cross-platform (Windows/Linux) desktop application for transcribing audio files using the Mistral API (Voxtral Mini model) with speaker diarization.
 
@@ -66,7 +66,7 @@ python build.py
 ### Option 2: Using PyInstaller directly
 
 ```bash
-pyinstaller --onefile --windowed --name VoxtralTranscriber main.py
+pyinstaller --onefile --windowed --name NeoTranscribe main.py
 ```
 
 ### Option 3: Using the spec file
@@ -86,7 +86,7 @@ For the .exe to work on machines without FFmpeg installed, you need to bundle ff
 3. Place it in the project root or add it to the PyInstaller build:
 
 ```bash
-pyinstaller --onefile --windowed --name VoxtralTranscriber --add-binary "ffmpeg.exe;." main.py
+pyinstaller --onefile --windowed --name NeoTranscribe --add-binary "ffmpeg.exe;." main.py
 ```
 
 ## Usage

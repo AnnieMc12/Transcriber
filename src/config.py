@@ -9,7 +9,7 @@ import os
 import sys
 from pathlib import Path
 
-APP_NAME = "VoxtralTranscriber"
+APP_NAME = "NeoTranscribe"
 CONFIG_FILENAME = "config.json"
 
 

@@ -1,4 +1,4 @@
-"""Entry point for Voxtral Transcriber."""
+"""Entry point for NeoTranscribe."""
 
 import sys
 
@@ -9,7 +9,7 @@ from src.main_window import MainWindow
 
 def main():
     app = QApplication(sys.argv)
-    app.setApplicationName("Voxtral Transcriber")
+    app.setApplicationName("NeoTranscribe")
     app.setStyle("Fusion")
 
     window = MainWindow()

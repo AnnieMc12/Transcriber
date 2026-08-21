@@ -1,5 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
-# PyInstaller spec file for Voxtral Transcriber
+# PyInstaller spec file for NeoTranscribe
 # Usage: pyinstaller build.spec
 
 a = Analysis(
@@ -30,7 +30,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='VoxtralTranscriber',
+    name='NeoTranscribe',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
